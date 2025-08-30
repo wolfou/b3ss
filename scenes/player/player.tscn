@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://xe8newytmesq"]
+
+[ext_resource type="Script" uid="uid://cxh0vpwmlu2xn" path="res://player.gd" id="1_hqtel"]
+[ext_resource type="PackedScene" uid="uid://drgsdi86jvuib" path="res://assets/models/craft_racer.glb" id="2_sweqy"]
+[ext_resource type="AudioStream" uid="uid://cnpe2u7wogh8i" path="res://assets/sounds/jet-engine.wav" id="3_2hs0m"]
+[ext_resource type="AudioStream" uid="uid://cdno7uci76jup" path="res://assets/sounds/psh.wav" id="4_1jxqw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d5lh8"]
+size = Vector3(1.15968, 0.757954, 2.03442)
+
+[node name="player" type="RigidBody3D"]
+gravity_scale = 0.0
+script = ExtResource("1_hqtel")
+
+[node name="craft_racer2" parent="." instance=ExtResource("2_sweqy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -0.5, -1.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0582626, -0.122352, -0.0116844)
+shape = SubResource("BoxShape3D_d5lh8")
+
+[node name="ThrustLight" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, -0.25, 1)
+light_color = Color(0.476841, 0.644696, 1, 1)
+light_energy = 10.264
+
+[node name="ThrustLight2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, -0.25, 1)
+light_color = Color(0.476841, 0.644696, 1, 1)
+light_energy = 10.264
+
+[node name="ThrustSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_2hs0m")
+volume_db = -11.143
+
+[node name="RotationSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_1jxqw")
+volume_db = -26.0
