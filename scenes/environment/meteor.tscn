@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://ryyv7oukvo23"]
+
+[ext_resource type="Script" uid="uid://cit762ygbt26c" path="res://meteor.gd" id="1_u5otw"]
+[ext_resource type="PackedScene" uid="uid://bmw2len5bdbxc" path="res://assets/models/meteor_detailed.glb" id="2_3ho0n"]
+[ext_resource type="AudioStream" uid="uid://b5jb5xft4eqep" path="res://assets/sounds/laser_mining.wav" id="3_3ho0n"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bqlw3"]
+radius = 0.446699
+
+[node name="Meteor" type="RigidBody3D"]
+script = ExtResource("1_u5otw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+
+[node name="meteor_detailed2" parent="MeshInstance3D" instance=ExtResource("2_3ho0n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -0.4, -1.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_bqlw3")
+
+[node name="MiningSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_3ho0n")
+
+[node name="MiningLight" type="OmniLight3D" parent="."]

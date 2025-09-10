@@ -2,7 +2,6 @@ extends Camera3D
 
 @export var player: RigidBody3D
 
-
 func _ready():
 	if player:
 		player.add_child(self)

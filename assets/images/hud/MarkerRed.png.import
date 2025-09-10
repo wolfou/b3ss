@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btapf5hhxarxa"
-path="res://.godot/imported/MarkerOrange.png-552e3bb67e5ac506a8971f53859de626.ctex"
+uid="uid://biupk6t7d50pj"
+path="res://.godot/imported/MarkerRed.png-148196d2912430c805282691569d18d9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/MarkerOrange.png"
-dest_files=["res://.godot/imported/MarkerOrange.png-552e3bb67e5ac506a8971f53859de626.ctex"]
+source_file="res://assets/images/hud/MarkerRed.png"
+dest_files=["res://.godot/imported/MarkerRed.png-148196d2912430c805282691569d18d9.ctex"]
 
 [params]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://xe8newytmesq"]
 
-[ext_resource type="Script" uid="uid://cxh0vpwmlu2xn" path="res://player.gd" id="1_hqtel"]
+[ext_resource type="Script" uid="uid://cxh0vpwmlu2xn" path="res://scenes/player/player.gd" id="1_hqtel"]
 [ext_resource type="PackedScene" uid="uid://drgsdi86jvuib" path="res://assets/models/craft_racer.glb" id="2_sweqy"]
 [ext_resource type="AudioStream" uid="uid://cnpe2u7wogh8i" path="res://assets/sounds/jet-engine.wav" id="3_2hs0m"]
 [ext_resource type="AudioStream" uid="uid://cdno7uci76jup" path="res://assets/sounds/psh.wav" id="4_1jxqw"]
@@ -36,3 +36,11 @@ volume_db = -11.143
 [node name="RotationSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_1jxqw")
 volume_db = -26.0
+
+[node name="cockpit" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+
+[node name="Camera3D" type="Camera3D" parent="cockpit"]
+current = true
+
+[node name="MiningLight" type="OmniLight3D" parent="."]
