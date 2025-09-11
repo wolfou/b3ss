@@ -8,9 +8,6 @@ extends RigidBody3D
 @onready var thrust_sound = $ThrustSound
 @onready var rotation_sound = $RotationSound
 
-@onready var mining_light = $MiningLight  # Ajoute une lumière directionnelle pour le minage
-var meteor;
-
 func _physics_process(delta):
 	# Gestion du propulseur principal (avant/arrière)
 	var is_thrusting = Input.is_action_pressed("thrust_forward")
@@ -23,26 +20,26 @@ func _physics_process(delta):
 	else:
 		thrust_sound.stop()
 
-	# Gestion des rotations
 	var is_rotating = false
 	if Input.is_action_pressed("rotate_left"):
-		apply_torque(Vector3.BACK * rotation_power)
+		apply_torque(-global_transform.basis.z * rotation_power)
 		is_rotating = true
 	if Input.is_action_pressed("rotate_right"):
-		apply_torque(Vector3.FORWARD * rotation_power)
+		apply_torque(global_transform.basis.z * rotation_power)
 		is_rotating = true
 	if Input.is_action_pressed("rotate_up"):
-		apply_torque(Vector3.RIGHT * rotation_power)
+		apply_torque(global_transform.basis.x * rotation_power)
 		is_rotating = true
 	if Input.is_action_pressed("rotate_down"):
-		apply_torque(Vector3.LEFT * rotation_power)
+		apply_torque(-global_transform.basis.x * rotation_power)
 		is_rotating = true
 	if Input.is_action_pressed("roll_left"):
-		apply_torque(Vector3.UP * rotation_power)
+		apply_torque(global_transform.basis.y * rotation_power)
 		is_rotating = true
 	if Input.is_action_pressed("roll_right"):
-		apply_torque(Vector3.DOWN * rotation_power)
+		apply_torque(-global_transform.basis.y * rotation_power)
 		is_rotating = true
+
 
 	# Arrêt instantané des rotations
 	if Input.is_action_pressed("stop_rotation"):
@@ -88,15 +85,3 @@ func _physics_process(delta):
 			rotation_sound.play()
 	else:
 		rotation_sound.stop()
-		
-	# Gestion du minage automatique
-	if meteor:
-		var distance_to_meteor = global_position.distance_to(meteor.global_position)
-		if distance_to_meteor <= 5.0:  # 5 mètres pour miner
-			mining_light.visible = true
-			mining_light.look_at_from_position(global_position, meteor.global_position)
-			meteor.start_mining()
-		else:
-			mining_light.visible = false
-			if meteor.is_mining:
-				meteor.stop_mining()

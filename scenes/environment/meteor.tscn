@@ -20,5 +20,3 @@ shape = SubResource("SphereShape3D_bqlw3")
 
 [node name="MiningSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_3ho0n")
-
-[node name="MiningLight" type="OmniLight3D" parent="."]

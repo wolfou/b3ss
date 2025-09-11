@@ -1,17 +1,22 @@
 extends Node3D
+
 @onready var player_scene = preload("res://scenes/player/player.tscn")
 @onready var hud_scene = preload("res://scenes/ui/hud.tscn")
 @onready var meteor_scene = preload("res://scenes/environment/meteor.tscn")
 
+var player
+var hud
+var current_meteor
+
+signal meteor_destroyed
+
 func _ready():
-	var player = player_scene.instantiate()
+	player = player_scene.instantiate()
 	add_child(player)
-	var hud = hud_scene.instantiate()
+	hud = hud_scene.instantiate()
 	add_child(hud)
-	hud.player = player  # Passe la référence du joueur au HUD
-	var meteor = spawn_meteor()
-	hud.meteor = meteor  # Passe la référence du météorite au HUD
-	player.meteor = meteor
+	hud.player = player
+	spawn_meteor()  # Premier spawn sans paramètres
 
 func spawn_meteor():
 	var meteor = meteor_scene.instantiate()
@@ -22,5 +27,12 @@ func spawn_meteor():
 	)
 	meteor.global_position = spawn_position
 	meteor.look_at_from_position(spawn_position, Vector3.ZERO)
+	meteor.player = player
 	add_child(meteor)
-	return meteor
+	meteor.destroyed.connect(_on_meteor_destroyed)
+	current_meteor = meteor
+	hud.meteor = current_meteor
+
+
+func _on_meteor_destroyed():
+	spawn_meteor()  # Respawn un nouvel astéroïde
