@@ -4,12 +4,10 @@ extends RigidBody3D
 var current_units: int = 5
 var is_mining: bool = false
 var mining_timer: float = 0.0
-
 @onready var mining_sound = $MiningSound
-
 var player
-
 signal destroyed
+var type = "Meteor"
 
 func _physics_process(delta):
 	if is_mining:
@@ -22,13 +20,11 @@ func _physics_process(delta):
 				stop_mining()
 				emit_signal("destroyed")
 				queue_free()
-
 	var space = get_parent()
 	if player:
 		var distance_to_meteor = global_position.distance_to(space.player.global_position)
 		if distance_to_meteor <= 5.0:
 			start_mining()
-			print("mining")
 		else:
 			if is_mining:
 				stop_mining()

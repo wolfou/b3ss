@@ -6,8 +6,8 @@ extends Node3D
 
 var player
 var hud
-var current_meteor
-
+var meteors = []
+var spatial_relation
 signal meteor_destroyed
 
 func _ready():
@@ -15,24 +15,43 @@ func _ready():
 	add_child(player)
 	hud = hud_scene.instantiate()
 	add_child(hud)
-	hud.player = player
-	spawn_meteor()  # Premier spawn sans paramètres
 
-func spawn_meteor():
-	var meteor = meteor_scene.instantiate()
-	var spawn_position = Vector3(
-		randf_range(-50, 50),
-		randf_range(-50, 50),
-		-randf_range(50, 50)
-	)
-	meteor.global_position = spawn_position
-	meteor.look_at_from_position(spawn_position, Vector3.ZERO)
-	meteor.player = player
-	add_child(meteor)
-	meteor.destroyed.connect(_on_meteor_destroyed)
-	current_meteor = meteor
-	hud.meteor = current_meteor
+	spatial_relation = SpatialRelation.new()
+	add_child(spatial_relation)
 
+	spawn_initial_meteors(100, 1000)
+	update_closest_meteor()
 
-func _on_meteor_destroyed():
-	spawn_meteor()  # Respawn un nouvel astéroïde
+func spawn_initial_meteors(count: int, volume_size: float):
+	var half_size = volume_size / 2.0
+	for i in range(count):
+		var meteor = meteor_scene.instantiate()
+		var spawn_position = Vector3(
+			randf_range(-half_size, half_size),
+			randf_range(-half_size, half_size),
+			randf_range(-half_size, half_size)
+		)
+		meteor.global_position = spawn_position
+		meteor.look_at_from_position(spawn_position, Vector3.ZERO)
+		meteor.player = player
+		meteor.destroyed.connect(_on_meteor_destroyed.bind(meteor))
+		add_child(meteor)
+		meteors.append(meteor)
+
+func _on_meteor_destroyed(meteor):
+	meteors.erase(meteor)
+	update_closest_meteor()
+
+func update_closest_meteor():
+	if meteors.is_empty():
+		return
+	var closest_meteor = null
+	var min_distance = INF
+	for meteor in meteors:
+		var distance = player.global_position.distance_to(meteor.global_position)
+		if distance < min_distance:
+			min_distance = distance
+			closest_meteor = meteor
+	spatial_relation.player = player
+	spatial_relation.target = closest_meteor
+	hud.spatial_relation = spatial_relation

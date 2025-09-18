@@ -10,6 +10,10 @@ script = ExtResource("1_0mwgc")
 position = Vector2(1152, 0)
 script = ExtResource("2_hqnrr")
 
-[node name="HUDLabel" type="Label" parent="."]
+[node name="TargetInfo" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="PlayerInfo" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
