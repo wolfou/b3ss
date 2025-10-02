@@ -3,8 +3,10 @@ extends Node3D
 @onready var player_scene = preload("res://scenes/player/player.tscn")
 @onready var hud_scene = preload("res://scenes/ui/hud.tscn")
 @onready var meteor_scene = preload("res://scenes/environment/meteor.tscn")
+@onready var space_station_scene = preload("res://scenes/environment/space_station.tscn")
 
 var player
+var space_station
 var hud
 var meteors = []
 var spatial_relation
@@ -13,6 +15,11 @@ signal meteor_destroyed
 func _ready():
 	player = player_scene.instantiate()
 	add_child(player)
+	space_station = space_station_scene.instantiate()
+	var spawn_position = Vector3(0, -200,0)
+	space_station.global_position = spawn_position
+	space_station.look_at_from_position(spawn_position, Vector3.ZERO)
+	add_child(space_station)
 	hud = hud_scene.instantiate()
 	add_child(hud)
 

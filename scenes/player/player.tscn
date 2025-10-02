@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://cdno7uci76jup" path="res://assets/sounds/psh.wav" id="4_1jxqw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_d5lh8"]
-size = Vector3(1.15968, 0.757954, 2.03442)
+size = Vector3(1.20041, 0.757954, 2.03442)
 
 [node name="player" type="RigidBody3D"]
 gravity_scale = 0.0
@@ -16,7 +16,7 @@ script = ExtResource("1_hqtel")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -0.5, -1.5)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0582626, -0.122352, -0.0116844)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00169452, -0.122352, -0.0116844)
 shape = SubResource("BoxShape3D_d5lh8")
 
 [node name="ThrustLight" type="OmniLight3D" parent="."]
