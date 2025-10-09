@@ -10,7 +10,6 @@ var space_station
 var hud
 var meteors = []
 var spatial_relation
-signal meteor_destroyed
 
 func _ready():
 	player = player_scene.instantiate()
@@ -31,13 +30,29 @@ func _ready():
 
 func spawn_initial_meteors(count: int, volume_size: float):
 	var half_size = volume_size / 2.0
+	var station_position = space_station.global_position
+	var min_distance_from_station = 400.0 # Ajuste cette valeur
+
 	for i in range(count):
 		var meteor = meteor_scene.instantiate()
-		var spawn_position = Vector3(
-			randf_range(-half_size, half_size),
-			randf_range(-half_size, half_size),
-			randf_range(-half_size, half_size)
-		)
+		var spawn_position: Vector3
+		var attempts = 0
+		var max_attempts = 10
+
+		# Utilise une boucle while à la place de repeat:
+		while true:
+			spawn_position = Vector3(
+				randf_range(-half_size, half_size),
+				randf_range(-half_size, half_size),
+				randf_range(-half_size, half_size)
+			)
+			attempts += 1
+			if attempts > max_attempts:
+				spawn_position = Vector3(half_size, half_size, half_size) # Position par défaut
+				break
+			if spawn_position.distance_to(station_position) >= min_distance_from_station:
+				break
+
 		meteor.global_position = spawn_position
 		meteor.look_at_from_position(spawn_position, Vector3.ZERO)
 		meteor.player = player
