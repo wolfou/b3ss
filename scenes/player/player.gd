@@ -7,6 +7,7 @@ extends RigidBody3D
 @onready var thrust_light2 = $ThrustLight2
 @onready var thrust_sound = $ThrustSound
 @onready var rotation_sound = $RotationSound
+@onready var inventory = $PlayerInventory
 
 func _physics_process(delta):
 	# Gestion du propulseur principal (avant/arrière)

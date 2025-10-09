@@ -15,7 +15,7 @@ func _physics_process(delta):
 		if mining_timer >= 1.0:
 			current_units -= 1
 			mining_timer = 0.0
-			print("Unité minée ! Il reste %d unités." % current_units)
+			player.inventory.add_resource("meteor_units", 1)
 			if current_units <= 0:
 				stop_mining()
 				emit_signal("destroyed")

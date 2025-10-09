@@ -20,6 +20,7 @@ func _ready():
 	space_station.look_at_from_position(spawn_position, Vector3.ZERO)
 	add_child(space_station)
 	hud = hud_scene.instantiate()
+	hud.player = player
 	add_child(hud)
 
 	spatial_relation = SpatialRelation.new()
