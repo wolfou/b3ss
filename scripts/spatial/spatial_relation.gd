@@ -1,4 +1,3 @@
-# res://scripts/spatial/spatial_relation.gd
 extends Node
 class_name SpatialRelation
 

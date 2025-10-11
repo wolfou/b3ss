@@ -1,10 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://xe8newytmesq"]
+[gd_scene load_steps=11 format=3 uid="uid://xe8newytmesq"]
 
 [ext_resource type="Script" uid="uid://cxh0vpwmlu2xn" path="res://scenes/player/player.gd" id="1_hqtel"]
 [ext_resource type="PackedScene" uid="uid://drgsdi86jvuib" path="res://assets/models/craft_racer.glb" id="2_sweqy"]
 [ext_resource type="AudioStream" uid="uid://cnpe2u7wogh8i" path="res://assets/sounds/jet-engine.wav" id="3_2hs0m"]
 [ext_resource type="AudioStream" uid="uid://cdno7uci76jup" path="res://assets/sounds/psh.wav" id="4_1jxqw"]
 [ext_resource type="Script" uid="uid://c58l1de7dfsth" path="res://scenes/player/player_inventory.gd" id="5_p47bc"]
+[ext_resource type="Script" uid="uid://sdre2qo4bcjg" path="res://scenes/player/interaction_manager.gd" id="6_75vfm"]
+[ext_resource type="Script" uid="uid://cpg4htgsy71wn" path="res://scenes/player/roles/pilot_controls.gd" id="7_0owmy"]
+[ext_resource type="Script" uid="uid://dq4fclgm5oeau" path="res://scenes/player/roles/role_manager.gd" id="8_qek5x"]
+[ext_resource type="Script" uid="uid://h8o5p43jc1h0" path="res://scenes/player/systems/interaction.gd" id="9_5gtgg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_d5lh8"]
 size = Vector3(1.20041, 0.757954, 2.03442)
@@ -46,3 +50,15 @@ current = true
 
 [node name="PlayerInventory" type="Node" parent="."]
 script = ExtResource("5_p47bc")
+
+[node name="InteractionManager" type="Node" parent="."]
+script = ExtResource("6_75vfm")
+
+[node name="PilotControls" type="Node" parent="."]
+script = ExtResource("7_0owmy")
+
+[node name="RoleManager" type="Node" parent="."]
+script = ExtResource("8_qek5x")
+
+[node name="Interaction" type="Node" parent="."]
+script = ExtResource("9_5gtgg")

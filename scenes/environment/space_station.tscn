@@ -38,6 +38,7 @@ radius = 15.9165
 
 [node name="RigidBody3D" type="RigidBody3D"]
 mass = 100000.0
+metadata/_edit_group_ = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 

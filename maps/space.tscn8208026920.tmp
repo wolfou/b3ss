@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://b4ooldvemcek2"]
+
+[ext_resource type="Script" uid="uid://dh5a74p3met5n" path="res://maps/space.gd" id="1_c6rj5"]
+[ext_resource type="Shader" uid="uid://c6apdf8wk8l63" path="res://maps/space.gdshader" id="2_2bl8t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1gilv"]
+shader = ExtResource("2_2bl8t")
+shader_parameter/star_height = 8.0
+shader_parameter/star_blend = 0.1
+shader_parameter/depth_blend = 0.1
+shader_parameter/flare_ratio = 0.1
+shader_parameter/star_size = 5.0
+shader_parameter/sun_direction = Color(-0.5, -0.3, 0.7, 1)
+shader_parameter/sun_angular_size = 0.0005
+shader_parameter/sun_color = Color(1, 0.9, 0.7, 1)
+shader_parameter/sun_brightness = 10.0
+
+[sub_resource type="Sky" id="Sky_haqnw"]
+sky_material = SubResource("ShaderMaterial_1gilv")
+
+[sub_resource type="Environment" id="Environment_owoyo"]
+background_mode = 2
+sky = SubResource("Sky_haqnw")
+
+[node name="space" type="Node3D"]
+script = ExtResource("1_c6rj5")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_owoyo")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]

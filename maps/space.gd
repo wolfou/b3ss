@@ -1,7 +1,6 @@
 extends Node3D
 
 @onready var player_scene = preload("res://scenes/player/player.tscn")
-@onready var hud_scene = preload("res://scenes/ui/hud.tscn")
 @onready var meteor_scene = preload("res://scenes/environment/meteor.tscn")
 @onready var space_station_scene = preload("res://scenes/environment/space_station.tscn")
 
@@ -19,9 +18,6 @@ func _ready():
 	space_station.global_position = spawn_position
 	space_station.look_at_from_position(spawn_position, Vector3.ZERO)
 	add_child(space_station)
-	hud = hud_scene.instantiate()
-	hud.player = player
-	add_child(hud)
 
 	spatial_relation = SpatialRelation.new()
 	add_child(spatial_relation)
@@ -56,8 +52,6 @@ func spawn_initial_meteors(count: int, volume_size: float):
 
 		meteor.global_position = spawn_position
 		meteor.look_at_from_position(spawn_position, Vector3.ZERO)
-		meteor.player = player
-		meteor.destroyed.connect(_on_meteor_destroyed.bind(meteor))
 		add_child(meteor)
 		meteors.append(meteor)
 
@@ -77,4 +71,4 @@ func update_closest_meteor():
 			closest_meteor = meteor
 	spatial_relation.player = player
 	spatial_relation.target = closest_meteor
-	hud.spatial_relation = spatial_relation
+	player.hud.spatial_relation = spatial_relation

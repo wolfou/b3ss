@@ -3,14 +3,29 @@ extends CanvasLayer
 @export var spatial_relation: SpatialRelation
 @onready var target_info = $TargetInfo
 @onready var ship_info = $ShipInfo
+@onready var interaction_prompt = $InteractionPrompt
 var player: Node
 
 func _ready():
-	$ShipInfo.position = Vector2(1000, 20)
-	$TargetInfo.position = Vector2(20, 20)
+	ship_info.position = Vector2(1000, 20)
+	target_info.position = Vector2(20, 20)
+	interaction_prompt.position = Vector2(570, 600)
+	target_info.modulate = Color(0.5, 1, 0.5)
+	ship_info.modulate = Color(0.5, 1, 0.5)
+	interaction_prompt.modulate = Color(0.5, 1, 0.5)
+	hide_interaction_prompt()
 
 	if player:
+		player.interaction_prompt_updated.connect(_on_interaction_prompt_updated)
 		player.inventory.resource_updated.connect(_on_resource_updated)
+
+func _on_interaction_prompt_updated(text: String):
+	if text == "":
+		hide_interaction_prompt()
+	elif text == "Meteor":
+		show_interaction_prompt("Appuyez sur F pour miner")
+	else:
+		show_interaction_prompt(text)
 
 func _physics_process(_delta):
 	update_ship_info()
@@ -33,7 +48,6 @@ func update_target_info():
 		data.approach.speed,
 		"%.1f sec" % data.approach.time_to_impact if data.approach.time_to_impact > 0 else "N/A"
 	]
-	target_info.modulate = Color(0.5, 1, 0.5)
 
 
 func update_ship_info():
@@ -48,7 +62,13 @@ func update_ship_info():
 		inv.get_resource("meteor_units"),
 		inv.get_resource("credits")
 	]
-	ship_info.modulate = Color(0.5, 1, 0.5)
 
 func _on_resource_updated(_resource_name: String, _new_value: int):
 	update_ship_info()
+
+func show_interaction_prompt(text: String):
+	interaction_prompt.text = text
+	interaction_prompt.visible = true
+
+func hide_interaction_prompt():
+	interaction_prompt.visible = false

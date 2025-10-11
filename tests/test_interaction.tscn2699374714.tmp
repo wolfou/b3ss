@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnisfb1at3il5"]
+
+[ext_resource type="Script" uid="uid://dqkriqcilhitw" path="res://tests/test_interaction.gd" id="1_hvlae"]
+
+[node name="TestInteraction" type="Node"]
+script = ExtResource("1_hvlae")
