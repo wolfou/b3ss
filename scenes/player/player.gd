@@ -22,3 +22,7 @@ func _ready():
 	add_child(hud)
 	pilot_controls = $PilotControls
 	interaction_manager = $InteractionManager
+
+func _input(event):
+	if event.is_action_pressed("trade_menu"):
+		get_tree().change_scene_to_file("res://scenes/ui/menu_commerce.tscn")

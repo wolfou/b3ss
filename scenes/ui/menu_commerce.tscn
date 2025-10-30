@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://ce4shmrbvuk26"]
+[ext_resource type="Script" path="res://scenes/ui/menu_commerce.gd" id="1"]
+[node name="menu_commerce" type="Panel"]
+script = ExtResource("1")
+
