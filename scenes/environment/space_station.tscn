@@ -1,81 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://ds31modqech52"]
+[gd_scene load_steps=4 format=3 uid="uid://ds31modqech52"]
 
-[ext_resource type="PackedScene" uid="uid://ckwe5vmbh6ur" path="res://assets/models/space_station_asteroid_mining_facility.glb" id="1_vc2ey"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_vc2ey"]
-radius = 64.3862
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_yd1ab"]
-radius = 107.294
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7e4rf"]
-radius = 32.0352
-height = 170.81
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5eygh"]
-radius = 20.2616
-height = 111.49
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e8pif"]
-radius = 21.1714
-height = 112.09
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_7ry31"]
-height = 21.0692
-radius = 45.1465
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_wwlly"]
-height = 15.9312
-radius = 46.3301
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_2rmsi"]
-height = 63.8812
-radius = 14.7788
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_ujels"]
-height = 64.3736
-radius = 15.9165
+[ext_resource type="Script" uid="uid://d2nrc0i6pooyv" path="res://scenes/environment/space_station.gd" id="1_7e4rf"]
+[ext_resource type="Script" uid="uid://bk5tf6f6b1su8" path="res://scenes/environment/mesh_instance_3d.gd" id="1_yd1ab"]
+[ext_resource type="PackedScene" uid="uid://cfbr0n1mljjtj" path="res://blender/asteroidbase.blend" id="2_yd1ab"]
 
 [node name="RigidBody3D" type="RigidBody3D"]
 mass = 100000.0
-metadata/_edit_group_ = true
+script = ExtResource("1_7e4rf")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(500, 0, 0, 0, 500, 0, 0, 0, 500, 0, 0, 0)
+script = ExtResource("1_yd1ab")
 
-[node name="Sketchfab_Scene" parent="MeshInstance3D" instance=ExtResource("1_vc2ey")]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.3393, 0, -24.0085)
-shape = SubResource("SphereShape3D_vc2ey")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -223.415, 20.7774, 124.777)
-shape = SubResource("SphereShape3D_yd1ab")
-
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.977754, -0.209755, 0, 0.209755, 0.977754, 0, 0, 0, 1, -9.95337, -17.5769, 138.184)
-shape = SubResource("CapsuleShape3D_7e4rf")
-
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.957138, 0.289626, 0.00207762, 0, -0.00717328, 0.999974, 0.289633, -0.957113, -0.00686582, 8.39743, -16.1469, 75.3555)
-shape = SubResource("CapsuleShape3D_5eygh")
-
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="."]
-transform = Transform3D(-0.00921515, 0.999958, 0, -0.999958, -0.00921515, 0, 0, 0, 1, -88.4813, 0, 139.128)
-shape = SubResource("CapsuleShape3D_e8pif")
-
-[node name="CollisionShape3D6" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.3055, 70.5345, -50.1592)
-shape = SubResource("CylinderShape3D_7ry31")
-
-[node name="CollisionShape3D7" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -202.109, 102.135, 79.9612)
-shape = SubResource("CylinderShape3D_wwlly")
-
-[node name="CollisionShape3D8" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.00921518, -0.999958, 0, 0.999958, 0.00921518, 0, 0, 0, 1, 19.8695, 48.5191, -103.589)
-shape = SubResource("CylinderShape3D_2rmsi")
-
-[node name="CollisionShape3D9" type="CollisionShape3D" parent="."]
-transform = Transform3D(-0.052202, -0.745962, -0.663939, 0.99756, -0.0698087, 3.3483e-09, -0.0463487, -0.662319, 0.747787, -165.538, 78.7724, 40.8397)
-shape = SubResource("CylinderShape3D_ujels")
+[node name="asteroidbase" parent="MeshInstance3D" instance=ExtResource("2_yd1ab")]

@@ -9,14 +9,14 @@ var space_station
 var hud
 var meteors = []
 var spatial_relation
+var angular_velocity: float = 0.14
 
 func _ready():
 	player = player_scene.instantiate()
 	add_child(player)
 	space_station = space_station_scene.instantiate()
-	var spawn_position = Vector3(0, -200,0)
+	var spawn_position = Vector3(0, -1000,0)
 	space_station.global_position = spawn_position
-	space_station.look_at_from_position(spawn_position, Vector3.ZERO)
 	add_child(space_station)
 
 	spatial_relation = SpatialRelation.new()
@@ -24,6 +24,7 @@ func _ready():
 
 	spawn_initial_meteors(100, 1000)
 	update_closest_meteor()
+
 
 func spawn_initial_meteors(count: int, volume_size: float):
 	var half_size = volume_size / 2.0

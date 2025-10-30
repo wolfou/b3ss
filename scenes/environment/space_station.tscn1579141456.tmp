@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://ds31modqech52"]
+
+[ext_resource type="Script" uid="uid://d2nrc0i6pooyv" path="res://scenes/environment/space_station.gd" id="1_7e4rf"]
+[ext_resource type="Script" uid="uid://bk5tf6f6b1su8" path="res://scenes/environment/mesh_instance_3d.gd" id="1_yd1ab"]
+[ext_resource type="PackedScene" uid="uid://cfbr0n1mljjtj" path="res://blender/asteroidbase.blend" id="2_yd1ab"]
+
+[node name="RigidBody3D" type="RigidBody3D"]
+mass = 100000.0
+script = ExtResource("1_7e4rf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(500, 0, 0, 0, 500, 0, 0, 0, 500, 0, 0, 0)
+script = ExtResource("1_yd1ab")
+
+[node name="asteroidbase" parent="MeshInstance3D" instance=ExtResource("2_yd1ab")]
