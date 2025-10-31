@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://xe8newytmesq"]
+[gd_scene load_steps=13 format=3 uid="uid://xe8newytmesq"]
 
 [ext_resource type="Script" uid="uid://cxh0vpwmlu2xn" path="res://scenes/player/player.gd" id="1_hqtel"]
-[ext_resource type="PackedScene" uid="uid://drgsdi86jvuib" path="res://assets/models/craft_racer.glb" id="2_sweqy"]
 [ext_resource type="AudioStream" uid="uid://cnpe2u7wogh8i" path="res://assets/sounds/jet-engine.wav" id="3_2hs0m"]
 [ext_resource type="AudioStream" uid="uid://cdno7uci76jup" path="res://assets/sounds/psh.wav" id="4_1jxqw"]
 [ext_resource type="Script" uid="uid://c58l1de7dfsth" path="res://scenes/player/player_inventory.gd" id="5_p47bc"]
@@ -9,28 +8,28 @@
 [ext_resource type="Script" uid="uid://cpg4htgsy71wn" path="res://scenes/player/roles/pilot_controls.gd" id="7_0owmy"]
 [ext_resource type="Script" uid="uid://dq4fclgm5oeau" path="res://scenes/player/roles/role_manager.gd" id="8_qek5x"]
 [ext_resource type="Script" uid="uid://h8o5p43jc1h0" path="res://scenes/player/systems/interaction.gd" id="9_5gtgg"]
+[ext_resource type="PackedScene" uid="uid://cb2ogq2jxwjjy" path="res://blender/ship.blend" id="9_h17s1"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_d5lh8"]
-size = Vector3(1.20041, 0.757954, 2.03442)
+[sub_resource type="BoxShape3D" id="BoxShape3D_je7p5"]
+size = Vector3(5.9668274, 6.045761, 11.074402)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fm80t"]
+size = Vector3(4.293396, 6.027054, 4.362549)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gx1jg"]
+size = Vector3(2.815918, 5.638916, 3.5203247)
 
 [node name="player" type="RigidBody3D"]
 gravity_scale = 0.0
 script = ExtResource("1_hqtel")
 
-[node name="craft_racer2" parent="." instance=ExtResource("2_sweqy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -0.5, -1.5)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00169452, -0.122352, -0.0116844)
-shape = SubResource("BoxShape3D_d5lh8")
-
 [node name="ThrustLight" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, -0.25, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07834634, -0.25, 7.61156)
 light_color = Color(0.476841, 0.644696, 1, 1)
 light_energy = 10.264
 
 [node name="ThrustLight2" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, -0.25, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0390912, -0.25, 7.4662724)
 light_color = Color(0.476841, 0.644696, 1, 1)
 light_energy = 10.264
 
@@ -46,6 +45,7 @@ volume_db = -26.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.12, -0.5)
 
 [node name="Camera3D" type="Camera3D" parent="cockpit" groups=["MainCamera"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.2284355)
 current = true
 
 [node name="PlayerInventory" type="Node" parent="."]
@@ -62,3 +62,22 @@ script = ExtResource("8_qek5x")
 
 [node name="Interaction" type="Node" parent="."]
 script = ExtResource("9_5gtgg")
+
+[node name="ship" parent="." instance=ExtResource("9_h17s1")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003036499, 0.004890442, -0.2866516)
+shape = SubResource("BoxShape3D_je7p5")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 0.0386914, 0.018379211, -5.827052)
+shape = SubResource("BoxShape3D_fm80t")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.8643801, 0, 0.50283897, 0, 1, 0, -0.50283897, 0, 0.8643801, -0.68258274, -0.002319336, 6.1286526)
+shape = SubResource("BoxShape3D_gx1jg")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.5083952, 0, 0.86112374, 0, 1, 0, -0.86112374, 0, 0.5083952, 0.2627827, -0.002319336, 6.1286526)
+shape = SubResource("BoxShape3D_gx1jg")

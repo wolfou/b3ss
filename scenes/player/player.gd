@@ -10,9 +10,9 @@ extends RigidBody3D
 @export var hud: CanvasLayer
 @export var interaction_manager: Node
 @export var pilot_controls: Node
-@export var thrust_power: float = 20.0
-@export var aux_thrust_power: float = 1.0
-@export var rotation_power: float = 1.0
+@export var thrust_power: float = 50.0
+@export var aux_thrust_power: float = 5.0
+@export var rotation_power: float = 10.0
 
 signal interaction_prompt_updated(text: String)
 
